@@ -28,7 +28,30 @@ function App() {
   // }, []);
 
   console.log(movies);
-  return <div>{loading ? <h1>Loading now ... </h1> : null}</div>;
+  return (
+    <div>
+      {loading ? (
+        <h1>Loading now ... </h1>
+      ) : (
+        <div>
+          {movies.map((movie) => {
+            return (
+              <div key={movie.id}>
+                <img alt="cover_image" src={movie.medium_cover_image} />
+                <h2>{movie.title}</h2>
+                <p>{movie.summary}</p>
+                <ol>
+                  {movie.genres.map((g) => (
+                    <li key={g}>{g}</li>
+                  ))}
+                </ol>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default App;
